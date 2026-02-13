@@ -1,0 +1,1023 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VAANI – Where every book finds a voice.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/opendyslexic@1.0/opendyslexic.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-glow: rgba(255, 222, 89, 0.75);
+            --container-bg: rgba(13, 32, 112, 0.9);
+            --text-color: #fff;
+            --border-color: rgba(255, 255, 255, 0.16);
+            --font-family-default: 'Poppins', sans-serif;
+            --font-family-dyslexic: 'OpenDyslexic', sans-serif;
+        }
+
+        /* --- PAGE & CONTAINER --- */
+        html, body { height: 100%; }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: var(--font-family-default);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            overflow: auto;
+            background:
+                radial-gradient(circle at 0% 0%, #1a2a6f 0%, transparent 50%),
+                radial-gradient(circle at 100% 100%, #0f2027 0%, transparent 55%),
+                radial-gradient(circle at 50% 120%, #182848 0%, #0b102b 50%, #050819 100%);
+            background-attachment: fixed;
+        }
+
+        .container {
+            background: var(--container-bg);
+            backdrop-filter: blur(18px);
+            padding: 32px 42px;
+            border-radius: 26px;
+            box-shadow: 0 26px 60px rgba(0, 0, 0, 0.55);
+            border: 1px solid var(--border-color);
+            width: 90%;
+            max-width: 1200px;
+            text-align: center;
+            position: relative;
+            z-index: 5;
+            margin-top: 90px;
+            margin-bottom: 30px;
+        }
+
+        /* --- BRAND HEADER (VAANI + tagline only, with pulse glow) --- */
+        .brand-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-bottom: 28px;
+        }
+
+        .brand-title {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: 0.16em;
+            color: #ffde59;
+            text-shadow:
+                0 0 16px rgba(255, 222, 89, 0.9),
+                0 0 30px rgba(255, 222, 89, 0.85),
+                0 0 60px rgba(255, 222, 89, 0.55);
+            text-transform: uppercase;
+            animation: glowPulse 2.6s ease-in-out infinite;
+        }
+
+        .brand-tagline {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.96);
+            text-shadow: 0 0 18px rgba(255, 255, 255, 0.85);
+        }
+
+        @keyframes glowPulse {
+            0% {
+                text-shadow:
+                    0 0 10px rgba(255, 222, 89, 0.7),
+                    0 0 25px rgba(255, 222, 89, 0.6),
+                    0 0 40px rgba(255, 222, 89, 0.4);
+                transform: scale(1);
+            }
+            50% {
+                text-shadow:
+                    0 0 20px rgba(255, 222, 89, 1),
+                    0 0 40px rgba(255, 222, 89, 0.9),
+                    0 0 70px rgba(255, 222, 89, 0.7);
+                transform: scale(1.03);
+            }
+            100% {
+                text-shadow:
+                    0 0 10px rgba(255, 222, 89, 0.7),
+                    0 0 25px rgba(255, 222, 89, 0.6),
+                    0 0 40px rgba(255, 222, 89, 0.4);
+                transform: scale(1);
+            }
+        }
+
+        h2 {
+            color: #ffde59;
+            text-shadow: 0 0 12px var(--primary-glow);
+            font-size: 1.4em;
+        }
+
+        /* --- FORM & CONTROLS --- */
+        .form-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 16px;
+        }
+
+        input[type="file"] { display: none; }
+
+        .file-label {
+            padding: 10px 18px;
+            background-color: rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background-color 0.25s, transform 0.12s, box-shadow 0.2s;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        .file-label:hover {
+            background-color: rgba(255, 255, 255, 0.18);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35);
+        }
+
+        input[type="submit"] {
+            padding: 10px 22px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            background: linear-gradient(90deg, #00c6ff, #0072ff);
+            font-weight: 600;
+            color: white;
+            transition: transform 0.18s, box-shadow 0.2s;
+            box-shadow: 0 10px 22px rgba(0, 114, 255, 0.4);
+        }
+
+        input[type="submit"]:hover {
+            transform: translateY(-1px) scale(1.03);
+            box-shadow: 0 14px 30px rgba(0, 114, 255, 0.6);
+        }
+
+        select {
+            padding: 10px 32px 10px 14px;
+            border: none;
+            border-radius: 12px;
+            background-color: rgba(255, 255, 255, 0.10);
+            color: var(--text-color);
+            font-weight: 500;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        select option {
+            background-color: #10174a;
+            color: #ffffff;
+        }
+
+        select:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(255, 222, 89, 0.8);
+        }
+
+        /* --- PROGRESS --- */
+        .progress-container {
+            display: none;
+            margin-top: 20px;
+            z-index: 6;
+        }
+
+        .progress-bar {
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 999px;
+            overflow: hidden;
+            position: relative; /* needed for runner positioning */
+        }
+
+        .progress-bar-inner {
+            height: 24px;
+            width: 0%;
+            background: linear-gradient(90deg, #00c6ff, #0072ff);
+            text-align: center;
+            line-height: 24px;
+            font-weight: bold;
+            transition: width 0.5s ease;
+        }
+
+        /* runner emoji that moves with progress */
+        .progress-runner {
+            position: absolute;
+            top: 50%;
+            left: 0%;
+            transform: translate(-50%, -50%);
+            font-size: 22px;
+            filter: drop-shadow(0 0 6px rgba(0,0,0,0.5));
+            transition: left 0.4s ease-out;
+            pointer-events: none;
+        }
+
+        .progress-status {
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        /* --- RESULTS --- */
+        .results-container {
+            text-align: left;
+            margin-top: 24px;
+            width: 100%;
+            z-index: 6;
+        }
+
+        .toggle-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .toggle-button {
+            padding: 10px 15px;
+            border: none;
+            background: none;
+            color: rgba(255, 255, 255, 0.6);
+            font-family: var(--font-family-default);
+            font-size: 1.05em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.2s, border-bottom-color 0.2s;
+            border-bottom: 3px solid transparent;
+            position: relative;
+            top: 2px;
+        }
+
+        .toggle-button.active {
+            color: #ffde59;
+            border-bottom-color: #ffde59;
+        }
+
+        .text-content-wrapper {
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .result-section { margin-bottom: 25px; }
+
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid rgba(255, 222, 89, 0.25);
+            padding-bottom: 5px;
+        }
+
+        .copy-btn {
+            padding: 5px 10px;
+            font-size: 12px;
+            background-color: #ffffff33;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+            transition: background-color 0.2s;
+        }
+
+        .copy-btn:hover { background-color: #ffffff55; }
+
+        textarea {
+            width: 100%;
+            box-sizing: border-box;
+            margin-top: 10px;
+            border: 1px solid transparent;
+            border-radius: 12px;
+            padding: 15px;
+            font-size: 16px;
+            line-height: 1.6;
+            resize: vertical;
+            background-color: rgba(0, 0, 0, 0.3);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            height: 400px;
+        }
+
+        textarea:focus {
+            background-color: rgba(0, 0, 0, 0.35);
+            border-color: rgba(255, 222, 89, 0.6);
+            box-shadow: 0 0 18px rgba(255, 222, 89, 0.3);
+        }
+
+        .audio-player-wrapper {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: rgba(0, 0, 0, 0.25);
+            border-radius: 15px;
+        }
+
+        audio { width: 100%; }
+
+        .accessibility-controls {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .control-group label {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .a11y-btn, .color-swatch {
+            border: none;
+            border-radius: 6px;
+            padding: 6px 10px;
+            cursor: pointer;
+            background-color: #ffffff33;
+            color: var(--text-color);
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        .a11y-btn:hover, .color-swatch:hover {
+            background-color: #ffffff55;
+            transform: translateY(-1px);
+        }
+
+        .color-swatch {
+            width: 24px;
+            height: 24px;
+            padding: 0;
+        }
+
+        #dyslexia-toggle { accent-color: #ffde59; }
+
+        .qa-button {
+            display: inline-block;
+            padding: 12px 25px;
+            margin-bottom: 25px;
+            font-size: 1.05em;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(90deg, #ff6a00, #ee0979);
+            border-radius: 10px;
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .qa-button:hover {
+            transform: translateY(-1px) scale(1.03);
+            box-shadow: 0 6px 22px rgba(0, 0, 0, 0.4);
+        }
+
+        /* --- Floating Controls (Theme) --- */
+        .floating-controls {
+            position: fixed;
+            right: 18px;
+            top: 12px;
+            z-index: 20;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .float-btn {
+            background: rgba(10, 20, 70, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text-color);
+            padding: 8px 12px;
+            border-radius: 999px;
+            cursor: pointer;
+            backdrop-filter: blur(8px);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .float-toggle {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            padding: 6px;
+            background: rgba(4, 8, 40, 0.85);
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        /* === BACKGROUND WAVES + STARS === */
+        .particle-field {
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .particle-field::before,
+        .particle-field::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .particle-field::before {
+            background-image:
+                radial-gradient(1px 1px at 10% 30%, rgba(255,255,255,0.8), transparent),
+                radial-gradient(1.2px 1.2px at 40% 80%, rgba(173, 216, 255, 0.9), transparent),
+                radial-gradient(1px 1px at 75% 40%, rgba(255,255,255,0.85), transparent),
+                radial-gradient(1.2px 1.2px at 90% 70%, rgba(0, 204, 255, 0.9), transparent);
+            background-size: 260px 260px;
+            opacity: 0.85;
+            animation: moveStars 32s linear infinite;
+        }
+
+        .particle-field::after {
+            background-image:
+                radial-gradient(2px 2px at 20% 55%, rgba(0, 173, 255, 0.8), transparent),
+                radial-gradient(2px 2px at 60% 20%, rgba(255, 120, 180, 0.9), transparent),
+                radial-gradient(2px 2px at 85% 90%, rgba(120, 200, 255, 0.9), transparent);
+            background-size: 420px 420px;
+            opacity: 0.55;
+            animation: moveStars 48s linear infinite;
+        }
+
+        @keyframes moveStars {
+            from { background-position: 0 0; }
+            to   { background-position: 500px 500px; }
+        }
+
+        .background-waves {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .wave {
+            position: absolute;
+            left: -20%;
+            width: 140%;
+            height: 38%;
+            background: radial-gradient(circle at 10% 20%, rgba(80, 147, 255, 0.8), transparent 60%);
+            filter: blur(8px);
+            opacity: 0.55;
+            animation: waveFloat 18s ease-in-out infinite alternate;
+        }
+
+        .wave-top {
+            top: -20%;
+            border-bottom-left-radius: 60% 70%;
+            border-bottom-right-radius: 60% 70%;
+        }
+
+        .wave-bottom {
+            bottom: -25%;
+            border-top-left-radius: 70% 80%;
+            border-top-right-radius: 70% 80%;
+            animation-delay: -6s;
+            background: radial-gradient(circle at 80% 80%, rgba(0, 190, 255, 0.9), transparent 65%);
+        }
+
+        @keyframes waveFloat {
+            0%   { transform: translateY(0) translateX(0); }
+            50%  { transform: translateY(10px) translateX(12px); }
+            100% { transform: translateY(0) translateX(-8px); }
+        }
+
+        body[data-theme='calm'] {
+            filter: hue-rotate(0deg) saturate(110%);
+        }
+
+        body[data-theme='sunset'] {
+            filter: hue-rotate(-15deg) saturate(125%);
+        }
+
+        body[data-theme='night'] {
+            filter: brightness(0.92) contrast(112%);
+        }
+
+        @media (max-width: 720px) {
+            .floating-controls {
+                right: 12px;
+                top: 12px;
+                gap: 6px;
+            }
+            .container {
+                padding: 22px;
+                margin-top: 80px;
+            }
+            .brand-title {
+                font-size: 2.4rem;
+                letter-spacing: 0.14em;
+            }
+            .brand-tagline {
+                font-size: 1.1rem;
+            }
+        }
+
+    </style>
+</head>
+<body data-theme="calm">
+
+<!-- Starfield -->
+<div class="particle-field" aria-hidden="true"></div>
+
+<!-- Smooth top & bottom waves -->
+<div class="background-waves" aria-hidden="true">
+    <div class="wave wave-top"></div>
+    <div class="wave wave-bottom"></div>
+</div>
+
+<!-- Floating theme / voice controls -->
+<div class="floating-controls" aria-hidden="false">
+    <div class="float-toggle" role="toolbar" aria-label="Theme selection">
+        <button class="float-btn" onclick="setTheme('calm')" title="Calm">Calm</button>
+        <button class="float-btn" onclick="setTheme('sunset')" title="Sunset">Sunset</button>
+        <button class="float-btn" onclick="setTheme('night')" title="Night">Night</button>
+    </div>
+
+    <!-- Voice control UI -->
+    <div class="float-toggle" title="Voice Control" aria-label="Voice control">
+        <button id="voice-toggle-btn" class="float-btn" aria-pressed="false" title="Start voice control">🎙</button>
+        <div id="voice-status" style="min-width:110px;padding:6px 8px;border-radius:999px;background:rgba(0,0,0,0.26);font-size:13px;color:#fff;text-align:center;">
+            Voice: Off
+        </div>
+    </div>
+</div>
+
+<div class="container" role="main">
+    <!-- Brand header with title + tagline (no logo, with pulse glow) -->
+    <div class="brand-header">
+        <div class="brand-title">VAANI</div>
+        <div class="brand-tagline">Where every book finds a voice.</div>
+    </div>
+
+    <form id="upload-form">
+        <div class="form-wrapper">
+            <label for="file-upload" class="file-label" id="file-label">Choose PDF</label>
+            <input id="file-upload" type="file" name="file" accept=".pdf" required>
+
+            <select name="language" id="language-select">
+                <option value="English">English</option>
+                <option value="Hindi">Hindi</option>
+                <option value="Kannada">Kannada</option>
+            </select>
+
+            <!-- Dyslexia checkbox -->
+            <label style="display:flex; align-items:center; gap:8px; background: rgba(255,255,255,0.06); padding:8px 10px; border-radius:12px;">
+                <input type="checkbox" id="dyslexia-checkbox" name="dyslexia_mode" value="true">
+                <span style="font-weight:600; color:var(--text-color)">Dyslexia mode</span>
+            </label>
+
+            <input type="submit" value="Upload and Process">
+        </div>
+    </form>
+
+    <div class="progress-container" id="progress-container">
+        <div class="progress-bar">
+            <div class="progress-bar-inner" id="progress-bar-inner">0%</div>
+            <!-- Running person -->
+            <div class="progress-runner" id="progress-runner">🏃‍♂️</div>
+        </div>
+        <div class="progress-status" id="progress-status">Initializing...</div>
+    </div>
+
+    <div class="results-container" id="results-container">
+        <!-- Results inserted here -->
+    </div>
+</div>
+
+<script>
+    /* --- EXISTING APP LOGIC --- */
+    const uploadForm = document.getElementById('upload-form');
+    const fileInput = document.getElementById('file-upload');
+    const fileLabel = document.getElementById('file-label');
+    const progressContainer = document.getElementById('progress-container');
+    const progressBar = document.getElementById('progress-bar-inner');
+    const progressStatus = document.getElementById('progress-status');
+    const resultsContainer = document.getElementById('results-container');
+    const dyslexiaCheckbox = document.getElementById('dyslexia-checkbox');
+
+    let currentTaskId = null;
+
+    fileInput.addEventListener('change', () => {
+        fileLabel.textContent = fileInput.files.length > 0 ? fileInput.files[0].name : 'Choose PDF';
+    });
+
+    uploadForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        resultsContainer.innerHTML = '';
+        progressContainer.style.display = 'block';
+        const formData = new FormData();
+        if (!fileInput.files[0]) {
+            handleError('Please choose a PDF file first.');
+            return;
+        }
+        formData.append('file', fileInput.files[0]);
+        formData.append('language', document.getElementById('language-select').value);
+        formData.append('dyslexia_mode', dyslexiaCheckbox && dyslexiaCheckbox.checked ? 'true' : 'false');
+
+        try {
+            const uploadResponse = await fetch('/upload', { method: 'POST', body: formData });
+            const uploadData = await uploadResponse.json();
+            if (uploadData.task_id) {
+                currentTaskId = uploadData.task_id;
+                pollStatus(uploadData.task_id);
+            } else {
+                handleError(uploadData.error || 'Upload failed.');
+            }
+        } catch (error) {
+            console.error('Upload error', error);
+            handleError('An error occurred during upload.');
+        }
+    });
+
+    function pollStatus(taskId) {
+        const interval = setInterval(async () => {
+            try {
+                const statusResponse = await fetch(`/status/${taskId}`);
+                const data = await statusResponse.json();
+                const progressValue = data.progress || 0;
+                progressBar.style.width = `${progressValue}%`;
+                progressBar.textContent = `${progressValue}%`;
+                progressStatus.textContent = data.status || 'Waiting...';
+
+                // move runner with progress
+                updateRunner(progressValue);
+
+                if (data.status === 'Complete') {
+                    clearInterval(interval);
+                    progressContainer.style.display = 'none';
+                    displayResults(data.result);
+                    window.history.pushState({}, '', `/?task_id=${taskId}`);
+                } else if (data.status === 'Error') {
+                    clearInterval(interval);
+                    handleError(data.result?.simplified_text || 'Processing failed.');
+                }
+            } catch (error) {
+                clearInterval(interval);
+                console.error('Status poll error', error);
+                handleError('Could not get status.');
+            }
+        }, 1500);
+    }
+
+    function handleError(message) {
+        progressStatus.textContent = message;
+        progressBar.style.width = '100%';
+        progressBar.style.backgroundColor = '#e74c3c';
+        updateRunner(100);
+    }
+
+    // update runner position (0–100)
+    function updateRunner(progress) {
+        const runner = document.getElementById('progress-runner');
+        if (!runner) return;
+        const clamped = Math.max(0, Math.min(100, progress));
+        runner.style.left = clamped + '%';
+    }
+
+    function copyText(elementId, button) {
+        const textarea = document.getElementById(elementId);
+        if (!textarea) return;
+        textarea.select();
+        document.execCommand('copy');
+        button.textContent = 'Copied!';
+        setTimeout(() => { button.textContent = 'Copy'; }, 2000);
+    }
+
+    function displayResults(result) {
+        let qaButtonHtml = `<a href="/qa/${currentTaskId}" class="qa-button">💬 Ask a Question About This Document</a>`;
+
+        let audioHtml = '';
+        if (result && result.audio_file) {
+            audioHtml = `
+            <div class="result-section">
+                <div class="result-header"><h2>🎧 Audio Summary</h2></div>
+                <div class="audio-player-wrapper">
+                    <audio controls class="audio-player">
+                        <source src="/outputs/${result.audio_file}" type="audio/mp3">
+                    </audio>
+                </div>
+            </div>`;
+        }
+
+        let toggleButtonsHtml = `
+            <div class="toggle-buttons">
+                <button class="toggle-button active" onclick="showTextContent('simplified')">✨ Simplified Notes</button>
+                <button class="toggle-button" onclick="showTextContent('original')">📄 Original Text</button>
+            </div>
+        `;
+
+        let textContentHtml = '';
+
+        if (result && result.simplified_text) {
+            textContentHtml += `
+            <div id="simplified-text-wrapper" class="text-content-wrapper" style="display: block;">
+                <div class="result-header">
+                    <h2>✨ Simplified Study Notes</h2>
+                    <button class="copy-btn" onclick="copyText('simplified-text-area', this)">Copy</button>
+                </div>
+                <div class="accessibility-controls">
+                    <div class="control-group">
+                        <label>Font Size:</label>
+                        <button class="a11y-btn" onclick="changeFontSize(-1)">A-</button>
+                        <button class="a11y-btn" onclick="changeFontSize(1)">A+</button>
+                    </div>
+                    <div class="control-group">
+                        <label for="dyslexia-toggle">Dyslexia Font:</label>
+                        <input type="checkbox" id="dyslexia-toggle" onchange="toggleDyslexiaFont(this.checked)">
+                    </div>
+                    <div class="control-group">
+                        <label>BG Color:</label>
+                        <button class="color-swatch" style="background-color: #fdf6e3;" onclick="changeBgColor('#fdf6e3', '#000')"></button>
+                        <button class="color-swatch" style="background-color: #333;" onclick="changeBgColor('#333', '#fff')"></button>
+                        <button class="color-swatch" style="background-color: rgba(0,0,0,0.3);" onclick="changeBgColor('rgba(0,0,0,0.3)', '#fff')"></button>
+                    </div>
+                </div>
+                <textarea readonly id="simplified-text-area" style="font-size: 16px;">${result.simplified_text}</textarea>
+            </div>`;
+        }
+
+        if (result && result.original_text) {
+            textContentHtml += `
+            <div id="original-text-wrapper" class="text-content-wrapper" style="display: none;">
+                <div class="result-header">
+                    <h2>📄 Original Text</h2>
+                    <button class="copy-btn" onclick="copyText('original-text-area', this)">Copy</button>
+                </div>
+                <textarea readonly id="original-text-area">${result.original_text}</textarea>
+            </div>`;
+        }
+
+        resultsContainer.innerHTML = qaButtonHtml + audioHtml + toggleButtonsHtml + textContentHtml;
+        applyAccessibilityStyles();
+    }
+
+    function showTextContent(type) {
+        const simpleWrapper = document.getElementById('simplified-text-wrapper');
+        const originalWrapper = document.getElementById('original-text-wrapper');
+        const simpleBtn = document.querySelector('.toggle-button[onclick*="simplified"]');
+        const originalBtn = document.querySelector('.toggle-button[onclick*="original"]');
+
+        if (type === 'simplified') {
+            if (simpleWrapper) simpleWrapper.style.display = 'block';
+            if (originalWrapper) originalWrapper.style.display = 'none';
+            if (simpleBtn) simpleBtn.classList.add('active');
+            if (originalBtn) originalBtn.classList.remove('active');
+        } else {
+            if (simpleWrapper) simpleWrapper.style.display = 'none';
+            if (originalWrapper) originalWrapper.style.display = 'block';
+            if (simpleBtn) simpleBtn.classList.remove('active');
+            if (originalBtn) originalBtn.classList.add('active');
+        }
+    }
+
+    let currentFontSize = 16;
+    let isDyslexiaFont = false;
+
+    function applyAccessibilityStyles() {
+        const textarea = document.getElementById('simplified-text-area');
+        if (!textarea) return;
+        textarea.style.fontFamily = isDyslexiaFont ? "var(--font-family-dyslexic)" : "var(--font-family-default)";
+        const sizeBoost = isDyslexiaFont ? 2 : 0;
+        textarea.style.fontSize = `${currentFontSize + sizeBoost}px`;
+    }
+
+    function changeFontSize(amount) {
+        currentFontSize = Math.max(12, Math.min(28, currentFontSize + amount));
+        applyAccessibilityStyles();
+    }
+
+    function toggleDyslexiaFont(isChecked) {
+        isDyslexiaFont = isChecked;
+        applyAccessibilityStyles();
+    }
+
+    function changeBgColor(bgColor, textColor) {
+        const textarea = document.getElementById('simplified-text-area');
+        if (!textarea) return;
+        textarea.style.backgroundColor = bgColor;
+        textarea.style.color = textColor;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const taskIdFromUrl = urlParams.get('task_id');
+
+        if (taskIdFromUrl) {
+            fetch(`/status/${taskIdFromUrl}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'Complete') {
+                        currentTaskId = taskIdFromUrl;
+                        displayResults(data.result);
+                    }
+                })
+                .catch(() => { /* ignore */ });
+        }
+    });
+
+    /* --- Theme control logic --- */
+    function setTheme(name) {
+        document.body.setAttribute('data-theme', name);
+    }
+</script>
+
+<!-- === Voice control script (unchanged) === -->
+<script>
+(function(){
+  const voiceBtn = document.getElementById('voice-toggle-btn');
+  const voiceStatus = document.getElementById('voice-status');
+  if (!voiceBtn || !voiceStatus) return;
+
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const synth = window.speechSynthesis || null;
+
+  if (!SpeechRecognition) {
+    voiceStatus.textContent = 'Voice: Unsupported';
+    voiceBtn.disabled = true;
+    if (synth) synth.cancel();
+    return;
+  }
+
+  const recog = new SpeechRecognition();
+  recog.continuous = true;
+  recog.interimResults = false;
+  recog.lang = 'en-US';
+  recog.maxAlternatives = 1;
+
+  let listening = false;
+  let lastTranscript = '';
+
+  const COMMANDS = {
+    scrollUp: ['scroll up','page up','go up','up','scroll upward'],
+    scrollDown: ['scroll down','page down','go down','down','scroll downward'],
+    next: ['next','focus next','move next','go next'],
+    previous: ['previous','focus previous','move previous','go previous','back'],
+    select: ['select','open','activate','click','choose'],
+    read: ['read','read this','read aloud','speak'],
+    stop: ['stop','cancel','pause listening','halt','stop listening'],
+    repeat: ['repeat','say again','again']
+  };
+
+  function speak(text){
+    if (!synth) return;
+    synth.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'en-US';
+    u.rate = 1.0;
+    synth.speak(u);
+  }
+
+  function matchCommand(text){
+    if (!text) return null;
+    text = text.toLowerCase().trim();
+    for (const [cmd, phrases] of Object.entries(COMMANDS)){
+      for (const phrase of phrases){
+        if (text === phrase) return {cmd, raw:text};
+        if (text.includes(phrase)) return {cmd, raw:text};
+      }
+    }
+    const searchMatch = text.match(/(?:search for|find|look for)\s+(.+)/i);
+    if (searchMatch) return {cmd:'search', query: searchMatch[1].trim()};
+    return null;
+  }
+
+  function getFocusableElements(){
+    return Array.from(document.querySelectorAll('a,button,input,textarea,select,[tabindex]:not([tabindex="-1"])'))
+      .filter(el => !el.disabled && el.offsetParent !== null);
+  }
+
+  function perform(cmdObj){
+    if (!cmdObj){ speak('Command not recognized'); return; }
+    const cmd = cmdObj.cmd;
+    switch(cmd){
+      case 'scrollUp':
+        window.scrollBy({top:-400, behavior:'smooth'});
+        speak('Scrolling up');
+        break;
+      case 'scrollDown':
+        window.scrollBy({top:400, behavior:'smooth'});
+        speak('Scrolling down');
+        break;
+      case 'next': {
+        const focusables = getFocusableElements();
+        const idx = focusables.indexOf(document.activeElement);
+        const next = focusables[Math.min(focusables.length-1, Math.max(0, idx+1))];
+        if (next){ next.focus(); speak('Focused next'); } else speak('No next item');
+        break;
+      }
+      case 'previous': {
+        const focusables = getFocusableElements();
+        const idx = focusables.indexOf(document.activeElement);
+        const prev = (idx > 0) ? focusables[idx-1] : focusables[0];
+        if (prev){ prev.focus(); speak('Focused previous'); } else speak('No previous item');
+        break;
+      }
+      case 'select': {
+        const el = document.activeElement;
+        if (el && (el.tagName === 'BUTTON' || el.tagName === 'A' || el.onclick)) {
+          el.click();
+          speak('Selected');
+        } else {
+          const elAtCenter = document.elementFromPoint(window.innerWidth/2, window.innerHeight/2);
+          if (elAtCenter && typeof elAtCenter.click === 'function') {
+            elAtCenter.click();
+            speak('Selected center element');
+          } else {
+            speak('Nothing to select');
+          }
+        }
+        break;
+      }
+      case 'read': {
+        const el = document.activeElement;
+        let text = '';
+        if (el && el.innerText && el.tagName !== 'INPUT' && el.tagName !== 'TEXTAREA') text = el.innerText;
+        else text = document.body.innerText.slice(0, 1000);
+        if (text) speak(text);
+        else speak('Nothing to read');
+        break;
+      }
+      case 'stop':
+        if (synth) synth.cancel();
+        try { recog.stop(); } catch(e){}
+        updateUIListening(false);
+        speak('Stopped listening');
+        break;
+      case 'repeat':
+        speak('Repeat not implemented');
+        break;
+      case 'search':
+        speak('Searching for ' + cmdObj.query);
+        break;
+      default:
+        speak('Unknown command');
+    }
+  }
+
+  recog.onstart = () => { updateUIListening(true); speak('Listening'); };
+  recog.onend = () => { updateUIListening(false); };
+  recog.onerror = (evt) => {
+    console.error('Voice recog error', evt);
+    voiceStatus.textContent = 'Voice: Error';
+    speak('Recognition error');
+  };
+  recog.onresult = (evt) => {
+    const r = evt.results[evt.results.length-1];
+    const transcript = r[0].transcript.trim();
+    lastTranscript = transcript;
+    console.log('Voice transcript:', transcript);
+    const matched = matchCommand(transcript);
+    perform(matched);
+  };
+
+  function updateUIListening(isListening){
+    listening = !!isListening;
+    voiceBtn.setAttribute('aria-pressed', listening ? 'true' : 'false');
+    voiceBtn.textContent = listening ? '🛑' : '🎙';
+    voiceStatus.textContent = listening ? 'Voice: Listening' : 'Voice: Off';
+  }
+
+  let toggleCooldown = false;
+  voiceBtn.addEventListener('click', () => {
+    if (toggleCooldown) return;
+    toggleCooldown = true;
+    setTimeout(()=> toggleCooldown = false, 600);
+
+    if (!listening) {
+      try { recog.start(); } catch (e) { console.warn('recog start err', e); }
+    } else {
+      try { recog.stop(); } catch(e){}
+      if (synth) synth.cancel();
+      updateUIListening(false);
+    }
+  });
+
+  updateUIListening(false);
+
+  window.__voiceControl = {
+    start: () => { try { recog.start(); } catch(e){} },
+    stop: () => { try { recog.stop(); } catch(e){} },
+    lastTranscript: () => lastTranscript
+  };
+})();
+</script>
+
+</body>
+</html>
