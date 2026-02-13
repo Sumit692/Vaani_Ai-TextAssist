@@ -1,4 +1,5 @@
-🎙 VAANI – Where Every Book Finds a Voice
+🎙 VAANI
+Where every book finds a voice.
 
 VAANI is an AI-powered web application that transforms PDF documents into simplified study notes, generates audio summaries, and allows users to ask questions about the uploaded document.
 
